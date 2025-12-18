@@ -1,26 +1,25 @@
 # Universal Website Scraper (MVP)
 
-This project is a full-stack MVP that scrapes websites (static and JS-rendered),
-performs basic interactions (scroll), and returns structured, section-aware JSON.
-A minimal frontend is provided to view and download the scraped data.
+A full-stack MVP that scrapes **static and JavaScript-rendered websites**, performs
+basic interactions (scrolling), and returns **structured, section-aware JSON**.
+Includes a clean web UI to trigger scrapes and view results in real time.
 
 ---
 
-## Tech Stack
-- Python 3.10+
-- FastAPI
-- httpx + BeautifulSoup (static scraping)
-- Playwright (JS rendering fallback)
-- Jinja2 (frontend)
-- Uvicorn (server)
+## 🚀 Tech Stack
+
+- **Python 3.10+**
+- **FastAPI** – backend API
+- **httpx + BeautifulSoup** – static HTML scraping
+- **Playwright** – JavaScript rendering fallback
+- **Jinja2** – frontend templating
+- **Uvicorn** – ASGI server
 
 ---
 
-## How to Run (Windows)
+## 🛠️ Setup & Run (Windows)
 
+### 1️⃣ Clone the repository
 ```bash
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-playwright install
-python -m uvicorn app.main:app --port 8000
+git clone https://github.com/YOUR_USERNAME/universal-website-scraper.git
+cd universal-website-scraper
