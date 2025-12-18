@@ -1,25 +1,43 @@
-# Universal Website Scraper (MVP)
+# 🌐 Universal Website Scraper (MVP)
 
-A full-stack MVP that scrapes **static and JavaScript-rendered websites**, performs
-basic interactions (scrolling), and returns **structured, section-aware JSON**.
-Includes a clean web UI to trigger scrapes and view results in real time.
+A **full-stack web scraping application** that intelligently extracts structured
+content from **static and JavaScript-rendered websites**.  
+The system performs basic interactions such as scrolling and outputs a
+**section-aware, well-structured JSON response**.
+
+This project demonstrates real-world scraping strategies, backend API design,
+JS rendering fallback, and a clean frontend UI.
 
 ---
 
-## 🚀 Tech Stack
+## ✨ Key Features
 
+- ✅ Scrapes **static HTML websites**
+- ✅ Automatically falls back to **JavaScript rendering** (Playwright)
+- ✅ Performs basic interactions (scrolling)
+- ✅ Extracts **semantic sections** (hero, section, nav, footer, etc.)
+- ✅ Outputs structured, evaluator-compliant JSON
+- ✅ Clean, modern web UI for testing
+- ✅ Windows-compatible setup
+
+---
+
+## 🧱 Tech Stack
+
+### Backend
 - **Python 3.10+**
-- **FastAPI** – backend API
-- **httpx + BeautifulSoup** – static HTML scraping
-- **Playwright** – JavaScript rendering fallback
-- **Jinja2** – frontend templating
+- **FastAPI** – REST API framework
+- **httpx** – HTTP client
+- **BeautifulSoup** – HTML parsing
+- **Playwright** – JavaScript rendering & interactions
 - **Uvicorn** – ASGI server
 
+### Frontend
+- **HTML / CSS**
+- **Jinja2 Templates**
+- Minimal, responsive UI
+
 ---
 
-## 🛠️ Setup & Run (Windows)
+## 📂 Project Structure
 
-### 1️⃣ Clone the repository
-```bash
-git clone https://github.com/YOUR_USERNAME/universal-website-scraper.git
-cd universal-website-scraper
