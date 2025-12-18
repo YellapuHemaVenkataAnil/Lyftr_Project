@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Universal Website Scraper</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .container {
+      width: 100%;
+      max-width: 800px;
+      background: #ffffff;
+      color: #222;
+      border-radius: 16px;
+      padding: 30px 32px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+    h1 {
+      margin-top: 0;
+      text-align: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: #2c5364;
+    }
+    p.subtitle {
+      text-align: center;
+      margin-top: -6px;
+      margin-bottom: 24px;
+      color: #555;
+    }
+    .input-group {
+      display: flex;
+      gap: 12px;
+    }
+    input[type="url"] {
+      flex: 1;
+      padding: 14px 16px;
+      font-size: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+    input[type="url"]:focus {
+      border-color: #2c5364;
+    }
+    button {
+      padding: 14px 22px;
+      font-size: 15px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #2c5364, #203a43);
+      color: white;
+      font-weight: 600;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+    .status {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #666;
+    }
+    pre {
+      margin-top: 20px;
+      padding: 18px;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 12px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+    footer {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Universal Website Scraper</h1>
+    <p class="subtitle">Scrape static & JS-rendered websites into structured JSON</p>
+
+    <div class="input-group">
+      <input id="url" type="url" placeholder="https://example.com" />
+      <button onclick="scrape()">Scrape</button>
+    </div>
+
+    <div class="status" id="status"></div>
+    <pre id="output">Waiting for input...</pre>
+
+  
+  </div>
+
+  <script>
+    async function scrape() {
+      const url = document.getElementById('url').value;
+      const status = document.getElementById('status');
+      const output = document.getElementById('output');
+
+      if (!url) {
+        status.textContent = 'Please enter a valid URL (with https://)';
+        return;
+      }
+
+      status.textContent = 'Scraping in progress...';
+      output.textContent = '';
+
+      try {
+        const res = await fetch('/scrape', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+
+        if (!res.ok) {
+          status.textContent = 'Invalid URL or request failed';
+          return;
+        }
+
+        const data = await res.json();
+        status.textContent = 'Scraping completed successfully';
+        output.textContent = JSON.stringify(data, null, 2);
+
+      } catch (err) {
+        status.textContent = 'Error occurred while scraping';
+      }
+    }
+  </script>
+</body>
+</html>
